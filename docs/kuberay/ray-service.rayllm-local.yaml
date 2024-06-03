@@ -14,6 +14,7 @@ spec:
           models:
             - ./models/continuous_batching/mistralai--Mixtral-7b-Instruct-v02.yaml
   rayClusterConfig:
+    rayVersion: '2.7.0'
     # Ray head pod template
     headGroupSpec:
       # The `rayStartParams` are used to configure the `ray start` command.
@@ -35,6 +36,9 @@ spec:
               requests:
                 cpu: 2
                 memory: 8Gi
+            volumeMounts:
+              - mountPath: /data/ray/model
+                name: model
             ports:
             - containerPort: 6379
               name: k8s-local-server
@@ -44,6 +48,11 @@ spec:
               name: client
             - containerPort: 8000
               name: serve
+          volumes:
+            - name: model
+              hostPath
+                path: "/data/ray/model"
+                type: Directory
     workerGroupSpecs:
     # the pod replicas in this group typed worker
     - replicas: 1
