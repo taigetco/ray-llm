@@ -7,12 +7,14 @@ spec:
   deploymentUnhealthySecondThreshold: 1200 # Config for the health check threshold for deployments. Default value is 60.
   serveConfigV2: |
       applications:
-      - name: router
+      - name: llm-router
         import_path: rayllm.backend:router_application
         route_prefix: /
+        runtime_env:
+          working_dir: "/data/ray/ray-llm/rayllm.zip"
         args:
           models:
-            - ./models/continuous_batching/mistralai--Mixtral-7b-Instruct-v02.yaml
+            - ./mistralai--Mixtral-7b-Instruct-v02.yaml
   rayClusterConfig:
     rayVersion: '2.7.0'
     # Ray head pod template
