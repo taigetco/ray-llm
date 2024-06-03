@@ -50,7 +50,7 @@ spec:
               name: serve
           volumes:
             - name: model
-              hostPath
+              hostPath:
                 path: "/data/ray/model"
                 type: Directory
     workerGroupSpecs:
