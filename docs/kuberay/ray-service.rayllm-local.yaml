@@ -11,10 +11,10 @@ spec:
         import_path: rayllm.backend:router_application
         route_prefix: /
         runtime_env:
-          working_dir: "/data/ray/ray-llm/rayllm.zip"
+          working_dir: "http://47.116.223.191:9000/object-demo/rayllm.zip"
         args:
           models:
-            - ./mistralai--Mixtral-7b-Instruct-v02.yaml
+            - ./models/continuous_batching/mistralai--Mixtral-7b-Instruct-v02.yaml
   rayClusterConfig:
     rayVersion: '2.7.0'
     # Ray head pod template
