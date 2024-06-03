@@ -12,7 +12,6 @@ deployment_config:
   max_concurrent_queries: 192
   ray_actor_options:
     resources:
-      accelerator_type_a10_48g: 0.3
       accelerator_type_a10_24g: 1
 engine_config:
   model_id: mistralai/Mistral-7B-Instruct-v0.2
@@ -34,7 +33,7 @@ engine_config:
       default_system_message: "Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity."
     stopping_sequences: []
 scaling_config:
-  num_workers: 8
+  num_workers: 2
   num_gpus_per_worker: 1
   num_cpus_per_worker: 8
   placement_strategy: "STRICT_PACK"
