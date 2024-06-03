@@ -14,7 +14,7 @@ spec:
           working_dir: "https://raw.githubusercontent.com/taigetco/ray-llm/master/rayllm.zip"
         args:
           models:
-            - ./models/continuous_batching/mistralai--Mixtral-7b-Instruct-v02.yaml
+            - /model-yaml/mistralai--Mixtral-7b-Instruct-v02.yaml
   rayClusterConfig:
     rayVersion: '2.7.0'
     # Ray head pod template
@@ -41,6 +41,8 @@ spec:
             volumeMounts:
               - mountPath: /data/ray/model
                 name: model
+              - mountPath: /model-yaml
+                name: model-yaml
             ports:
             - containerPort: 6379
               name: llm-server
@@ -54,6 +56,10 @@ spec:
             - name: model
               hostPath:
                 path: "/data/ray/model"
+                type: Directory
+            - name: model-yaml
+              hostPath:
+                path: "/data/ray/ray-llm/models/continuous_batching"
                 type: Directory
     workerGroupSpecs:
     # the pod replicas in this group typed worker
