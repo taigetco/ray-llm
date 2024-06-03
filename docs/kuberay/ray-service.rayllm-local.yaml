@@ -11,7 +11,7 @@ spec:
         import_path: rayllm.backend:router_application
         route_prefix: /
         runtime_env:
-          working_dir: "http://47.116.223.191:9000/object-demo/rayllm.zip"
+          working_dir: "https://raw.githubusercontent.com/taigetco/ray-llm/master/rayllm.zip"
         args:
           models:
             - ./models/continuous_batching/mistralai--Mixtral-7b-Instruct-v02.yaml
