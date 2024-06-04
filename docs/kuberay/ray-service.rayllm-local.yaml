@@ -12,7 +12,6 @@ spec:
         route_prefix: /
         runtime_env:
           working_dir: "https://raw.githubusercontent.com/taigetco/ray-llm/master/rayllm.zip"
-          HF_HOME: "/data/ray/model"
           HF_ENDPOINT: "https://hf-mirror.com"
         args:
           models:
@@ -37,7 +36,9 @@ spec:
               # - name: HF_HOME
                 # value: "/data/ray/model"
               - name: HF_ENDPOINT
-                value: "https://hf-mirror.com"
+                value: https://hf-mirror.com
+              - name: HUGGING_FACE_HUB_TOKEN
+                value: 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
             resources:
               limits:
                 cpu: 2
@@ -88,6 +89,8 @@ spec:
                 # value: "/data/ray/model"
               - name: HF_ENDPOINT
                 value: "https://hf-mirror.com"
+              - name: HUGGING_FACE_HUB_TOKEN
+                value: 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
             lifecycle:
               preStop:
                 exec:

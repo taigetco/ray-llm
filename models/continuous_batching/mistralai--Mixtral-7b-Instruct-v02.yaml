@@ -19,7 +19,6 @@ engine_config:
   type: VLLMEngine
   runtime_env:
     env_vars:
-      HF_HOME: "/data/ray/model"
       HF_ENDPOINT: "https://hf-mirror.com"
   engine_kwargs:
     trust_remote_code: true
