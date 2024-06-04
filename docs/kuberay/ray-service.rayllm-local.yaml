@@ -12,6 +12,8 @@ spec:
         route_prefix: /
         runtime_env:
           working_dir: "https://raw.githubusercontent.com/taigetco/ray-llm/master/rayllm.zip"
+          HF_HOME: /data/ray/model
+          HF_ENDPOINT: https://hf-mirror.com
         args:
           models:
             - /model-yaml/mistralai--Mixtral-7b-Instruct-v02.yaml
@@ -69,7 +71,7 @@ spec:
       # logical group name, for this called small-group, also can be functional
       groupName: gpu-group
       rayStartParams:
-        resources: '"{\"accelerator_type_cpu\": 15, \"accelerator_type_a10\": 2}"'
+        resources: '"{\"accelerator_type_cpu\": 8, \"accelerator_type_a10\": 2}"'
       # Pod template
       template:
         spec:
