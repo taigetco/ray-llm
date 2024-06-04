@@ -34,8 +34,8 @@ spec:
           - name: ray-head
             image: anyscale/ray-llm:latest
             env:
-              - name: HF_HOME
-                value: "/data/ray/model"
+              # - name: HF_HOME
+                # value: "/data/ray/model"
               - name: HF_ENDPOINT
                 value: "https://hf-mirror.com"
             resources:
@@ -84,8 +84,8 @@ spec:
           - name: llm
             image: anyscale/ray-llm:latest
             env:
-              - name: HF_HOME
-                value: "/data/ray/model"
+              # - name: HF_HOME
+                # value: "/data/ray/model"
               - name: HF_ENDPOINT
                 value: "https://hf-mirror.com"
             lifecycle:
@@ -101,9 +101,23 @@ spec:
                 cpu: "15"
                 memory: "20G"
                 nvidia.com/gpu: 2
+            volumeMounts:
+              - mountPath: /home/ray/.cache/huggingface
+                name: model
+              - mountPath: /model-yaml
+                name: model-yaml
             ports:
             - containerPort: 8000
               name: serve
+          volumes:
+            - name: model
+              hostPath:
+                path: "/root/.cache/huggingface"
+                type: Directory
+            - name: model-yaml
+              hostPath:
+                path: "/data/ray/ray-llm/models/continuous_batching"
+                type: Directory
           # Please add the following taints to the GPU node.
           tolerations:
             - key: "ray.io/node-type"
