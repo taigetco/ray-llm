@@ -46,7 +46,7 @@ spec:
                 cpu: 2
                 memory: 8Gi
             volumeMounts:
-              - mountPath: /data/ray/model
+              - mountPath: /home/ray/.cache/huggingface
                 name: model
               - mountPath: /model-yaml
                 name: model-yaml
@@ -62,7 +62,7 @@ spec:
           volumes:
             - name: model
               hostPath:
-                path: "/data/ray/model"
+                path: "/root/.cache/huggingface"
                 type: Directory
             - name: model-yaml
               hostPath:
