@@ -12,8 +12,8 @@ spec:
         route_prefix: /
         runtime_env:
           working_dir: "https://raw.githubusercontent.com/taigetco/ray-llm/master/rayllm.zip"
-          HF_HOME: /data/ray/model
-          HF_ENDPOINT: https://hf-mirror.com
+          HF_HOME: "/data/ray/model"
+          HF_ENDPOINT: "https://hf-mirror.com"
         args:
           models:
             - /model-yaml/mistralai--Mixtral-7b-Instruct-v02.yaml
